@@ -45,7 +45,7 @@ Material:
   - TransparentBackface
   - RayTracingPrepass
   - MOTIONVECTORS
-  m_LockedProperties: 
+  m_LockedProperties: _BentNormalMap
   m_SavedProperties:
     serializedVersion: 3
     m_TexEnvs:
@@ -54,7 +54,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _BaseColorMap:
-        m_Texture: {fileID: 2800000, guid: fe4d57a9c596e414d807d94f88863002, type: 3}
+        m_Texture: {fileID: 2800000, guid: 04aa37fc3d5bc804ea690fa9193c08bb, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _BentNormalMap:
@@ -90,15 +90,15 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MainTex:
-        m_Texture: {fileID: 2800000, guid: fe4d57a9c596e414d807d94f88863002, type: 3}
+        m_Texture: {fileID: 2800000, guid: 04aa37fc3d5bc804ea690fa9193c08bb, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MaskMap:
-        m_Texture: {fileID: 2800000, guid: 756f537bc905fad4ca2c9949c4bb27fb, type: 3}
+        m_Texture: {fileID: 2800000, guid: 28429aa8eab617142979cc49f56f6b87, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _NormalMap:
-        m_Texture: {fileID: 2800000, guid: bcc94fac6305b9646b3090aeba854e2d, type: 3}
+        m_Texture: {fileID: 2800000, guid: c1b785e1ee9cc4c4c8893533a689d98e, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _NormalMapOS:
