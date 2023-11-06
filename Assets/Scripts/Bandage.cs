@@ -15,9 +15,7 @@ public class Rope : MonoBehaviour
 
     public List<Vector3> ropePositions { get; set; } = new List<Vector3>();
 
-    private void Awake() => AddPosToRope(Vector3.zero);
-
-    
+    private void Awake() => AddPosToRope(Vector3.zero);  
 
     private void Update()
     {
@@ -25,7 +23,9 @@ public class Rope : MonoBehaviour
         LastSegmentGoToPlayerPos();
 
         DetectCollisionEnter();
-        if (ropePositions.Count > 2) DetectCollisionExits();
+        
+        if (ropePositions.Count > 2) 
+            DetectCollisionExits();
 
         
     }
@@ -63,22 +63,28 @@ public class Rope : MonoBehaviour
     private void UpdateRopePositions()
     {
         var spline = rope.Splines.First();
-        spline.Clear();
 
-        foreach (var pos in ropePositions)
+        while(spline.Count > ropePositions.Count)
         {
-            spline.Add(new BezierKnot(pos));
+            spline.RemoveAt(spline.Count - 1);
         }
-
-        // rope.positionCount = ropePositions.Count;
-        // rope.SetPositions(ropePositions.ToArray());
+        while(spline.Count < ropePositions.Count)
+        {
+            spline.Add(new());
+        }
+         
+        for (int i = 0; i <= ropePositions.Count; i++)
+        {
+            var bezierKnot = spline[i];
+            bezierKnot.Position = ropePositions[i];
+        }
     }
 
     private void LastSegmentGoToPlayerPos() 
     { 
-        var spline = rope.Splines.First();
+        // var spline = rope.Splines.First();
 
-        var bezier = spline[spline.Count() - 1];
-        bezier.Position = player.position;
+        // var bezier = spline[spline.Count() - 1];
+        // bezier.Position = player.position;
     }
 }
