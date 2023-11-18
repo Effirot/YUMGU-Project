@@ -15,6 +15,7 @@ Material:
   - _DOUBLESIDED_ON
   - _ENABLE_FOG_ON_TRANSPARENT
   - _MASKMAP
+  - _MATERIAL_FEATURE_CLEAR_COAT
   - _MATERIAL_FEATURE_SPECULAR_COLOR
   - _NORMALMAP
   - _NORMALMAP_TANGENT_SPACE
@@ -181,12 +182,12 @@ Material:
     - _AlphaCutoffShadow: 0.5
     - _AlphaDstBlend: 10
     - _AlphaRemapMax: 1
-    - _AlphaRemapMin: 0
+    - _AlphaRemapMin: 0.8662478
     - _AlphaSrcBlend: 1
     - _Anisotropy: 0
     - _BlendMode: 0
     - _BumpScale: 1
-    - _CoatMask: 0
+    - _CoatMask: 1
     - _CullMode: 0
     - _CullModeForward: 0
     - _Cutoff: 0
@@ -236,7 +237,7 @@ Material:
     - _MetallicRemapMin: 0
     - _Mode: 3
     - _NormalMapSpace: 0
-    - _NormalScale: 0.55
+    - _NormalScale: 0.97
     - _ObjectSpaceUVMapping: 0
     - _ObjectSpaceUVMappingEmissive: 0
     - _OcclusionStrength: 1
@@ -253,7 +254,7 @@ Material:
     - _RefractionModel: 0
     - _Smoothness: 0.5
     - _SmoothnessRemapMax: 1
-    - _SmoothnessRemapMin: 0.6131767
+    - _SmoothnessRemapMin: 0.7478266
     - _SmoothnessTextureChannel: 0
     - _SpecularAAScreenSpaceVariance: 0.1
     - _SpecularAAThreshold: 0.2
