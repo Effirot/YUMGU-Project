@@ -102,7 +102,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 4294967295
   m_InteractionLayers:
-    m_Bits: 1
+    m_Bits: 3
   m_DistanceCalculationMode: 1
   m_SelectMode: 0
   m_FocusMode: 1
@@ -263,7 +263,7 @@ Transform:
   m_GameObject: {fileID: 2776992367319263591}
   serializedVersion: 2
   m_LocalRotation: {x: 0.7010574, y: -0.09229595, z: 0.09229594, w: 0.70105743}
-  m_LocalPosition: {x: -0.000004450124, y: 2.380935, z: 0}
+  m_LocalPosition: {x: -0.000004450124, y: 1.27, z: 0}
   m_LocalScale: {x: 100.00003, y: 100.000046, z: 100.000046}
   m_ConstrainProportionsScale: 0
   m_Children: []
