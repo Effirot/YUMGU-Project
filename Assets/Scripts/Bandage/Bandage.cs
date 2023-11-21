@@ -25,9 +25,6 @@ public class Bandage : MonoBehaviour
 
     private Spline spline => splineContainer.Spline;
 
-
-#warning IXRHoverFilter
-
     private Vector3[] AllPositions 
     {
         get { 
@@ -72,7 +69,7 @@ public class Bandage : MonoBehaviour
         var list = AllPositions;
         if(points.Any())
         {
-            if (!Physics.Linecast(list[list.Count() - 1], list[list.Count() - 2], out var hit, layerMask)) 
+            if (!Physics.Linecast(list[list.Count() - 1], list[list.Count() - 2], out var hit, layerMask, QueryTriggerInteraction.Ignore)) 
             {
                 Destroy(points[points.Count() - 1].gameObject);
                 points.RemoveAt(points.Count() - 1);
@@ -82,8 +79,10 @@ public class Bandage : MonoBehaviour
 
     private void RaysChackers()
     {
+        var a  = new Vector2() / 2;
+
         Debug.DrawLine(AllPositions[AllPositions.Count() - 2], AllPositions[AllPositions.Count() - 1]);
-        if (Physics.Linecast(AllPositions[AllPositions.Count() - 2], AllPositions[AllPositions.Count() - 1], out var hit, layerMask)) 
+        if (Physics.Linecast(AllPositions[AllPositions.Count() - 2], AllPositions[AllPositions.Count() - 1], out var hit, layerMask, QueryTriggerInteraction.Ignore)) 
         {
             var pointObject = new GameObject("BandagePoint");
             
