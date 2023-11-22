@@ -1,4 +1,3 @@
-
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -27,13 +26,12 @@ public class Bandage : MonoBehaviour
 
     private Vector3[] AllPositions 
     {
-        get { 
+        get 
+        { 
             var result = new List<Vector3>();
 
             result.Add(transform.position);
-
             result.AddRange(points.Select(a=>a.transform.position));
-
             result.Add(attachedPoint.position);
 
             return result.ToArray();
@@ -79,9 +77,6 @@ public class Bandage : MonoBehaviour
 
     private void RaysChackers()
     {
-        var a  = new Vector2() / 2;
-
-        Debug.DrawLine(AllPositions[AllPositions.Count() - 2], AllPositions[AllPositions.Count() - 1]);
         if (Physics.Linecast(AllPositions[AllPositions.Count() - 2], AllPositions[AllPositions.Count() - 1], out var hit, layerMask, QueryTriggerInteraction.Ignore)) 
         {
             var pointObject = new GameObject("BandagePoint");
@@ -95,31 +90,33 @@ public class Bandage : MonoBehaviour
 
     private void RefreshGraphics()
     {
-    //     while(spline.Count < points.Count + 2)   
-    //     {
-    //         spline.Insert(0, new());
-    //     }
+        var list = AllPositions;
 
-    //     while(spline.Count > points.Count + 2)   
-    //     {
-    //         spline.RemoveAt(0);
-    //     }
+        while(spline.Count < list.Count() + 2)   
+        {
+            spline.Insert(0, new());
+        }
 
-    //     SetPositionToKnot(0, Vector3.zero);
-    //     SetPositionToKnot(spline.Count - 1, attachedPoint.transform.localPosition);
+        while(spline.Count > list.Count() + 2)   
+        {
+            spline.RemoveAt(0);
+        }
 
-    //     for(int i = 1; i < spline.Count - 2; i++)
-    //     {
-    //         SetPositionToKnot(i, points[i].transform.position);
-    //     } 
+        SetPositionToKnot(0, transform.position);
+        SetPositionToKnot(spline.Count - 1, attachedPoint.transform.position);
+
+        for(int i = 1; i < spline.Count - 2; i++)
+        {
+            SetPositionToKnot(i, list[i]);
+        } 
     }
 
-    // private void SetPositionToKnot(int index, Vector3 position)
-    // {
-    //     var knot = spline[index];
-    //     knot.Position = position;
-    //     spline[index] = knot;
-    // }
+    private void SetPositionToKnot(int index, Vector3 globalPosition)
+    {
+        var knot = spline[index];
+        knot.Position = transform.InverseTransformPoint(globalPosition);
+        spline[index] = knot;
+    }
 
 
 
