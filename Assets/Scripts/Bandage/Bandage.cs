@@ -41,6 +41,8 @@ public class Bandage : MonoBehaviour
     private void Awake()
     {
         splineContainer = GetComponent<SplineContainer>();
+
+        spline.Clear();
     }
     private void LateUpdate()
     {
