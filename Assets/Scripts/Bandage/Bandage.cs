@@ -24,6 +24,23 @@ public class Bandage : MonoBehaviour
 
     private Spline spline => splineContainer.Spline;
 
+    public float totalDistance 
+    {
+        get
+        {
+            var positions = AllPositions;
+
+            float distance = 0;
+
+            for(int i = 0; i < positions.Count() - 1; i++)
+            {
+                distance += Vector3.Distance(positions[i], positions[i + 1]);
+            }
+
+            return distance;
+        }
+    }
+
     private Vector3[] AllPositions 
     {
         get 
@@ -119,7 +136,4 @@ public class Bandage : MonoBehaviour
         knot.Position = transform.InverseTransformPoint(globalPosition);
         spline[index] = knot;
     }
-
-
-
 }
