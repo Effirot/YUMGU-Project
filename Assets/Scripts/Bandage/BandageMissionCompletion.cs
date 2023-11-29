@@ -11,6 +11,7 @@ public class BandageMissionCompletion : MonoBehaviour
     [SerializeField]
     private Mission mission;
 
+    [SerializeField]
     private float RequireDistance = 1;
 
     private void FixedUpdate()
