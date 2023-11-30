@@ -134,6 +134,7 @@ public class Bandage : MonoBehaviour
     {
         var knot = spline[index];
         knot.Position = transform.InverseTransformPoint(globalPosition);
+        knot.Rotation = transform.rotation;
         spline[index] = knot;
     }
 }
