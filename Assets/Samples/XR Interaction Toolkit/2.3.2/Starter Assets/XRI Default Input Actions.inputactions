@@ -915,7 +915,7 @@
                     "path": "<XRController>{LeftHand}/primary2DAxis",
                     "interactions": "",
                     "processors": "",
-                    "groups": "Noncontinuous Move",
+                    "groups": "",
                     "action": "Teleport Direction",
                     "isComposite": false,
                     "isPartOfComposite": false
@@ -1611,7 +1611,7 @@
                     "path": "<XRController>{RightHand}/primary2DAxis",
                     "interactions": "",
                     "processors": "",
-                    "groups": "Noncontinuous Move",
+                    "groups": "",
                     "action": "Teleport Direction",
                     "isComposite": false,
                     "isPartOfComposite": false

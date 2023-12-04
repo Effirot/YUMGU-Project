@@ -16,6 +16,8 @@ public class BandageMissionCompletion : MonoBehaviour
 
     private void FixedUpdate()
     {
+        
+
         if (bandage.totalDistance > RequireDistance)
         {
             mission.ForcedComplete();
