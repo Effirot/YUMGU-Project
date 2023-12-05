@@ -13,13 +13,13 @@ public class ScoreCounter : MonoBehaviour
         get => _Score;
         set 
         {
-            OnScoreChanged.Invoke(value);
+            OnScoreChanged.Invoke(value.ToString());
             
             _Score = value;
         }
     }
 
-    public UnityEvent<int> OnScoreChanged = new(); 
+    public UnityEvent<string> OnScoreChanged = new(); 
 
     public void Add(int count)
     {

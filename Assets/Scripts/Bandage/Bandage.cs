@@ -111,14 +111,14 @@ public class Bandage : MonoBehaviour
     {
         var list = AllPositions;
 
-        while(spline.Count < list.Count() + 2)   
-        {
-            spline.Insert(0, new());
-        }
-
         while(spline.Count > list.Count() + 2)   
         {
             spline.RemoveAt(0);
+        }
+
+        while(spline.Count < list.Count() + 2)   
+        {
+            spline.Insert(0, new());
         }
 
         SetPositionToKnot(0, transform.position);

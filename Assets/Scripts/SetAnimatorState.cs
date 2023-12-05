@@ -27,4 +27,9 @@ public class SetAnimatorState : MonoBehaviour
     {
         animator.SetTrigger(state);
     }
+
+    public void Play()
+    {
+        animator.Play(state);
+    }
 }
