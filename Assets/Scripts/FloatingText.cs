@@ -23,7 +23,16 @@ public class FloatingText : MonoBehaviour
 
         if (color.a <= 0.01f)
         {
-            Destroy(gameObject);
+            gameObject.SetActive(false);
         }
+    }
+
+    private void OnEnable()
+    {
+        var color = text.color;
+
+        color.a = 1;
+
+        text.color = color;
     }
 }

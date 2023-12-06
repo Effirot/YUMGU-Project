@@ -5,9 +5,11 @@ using Unity.VisualScripting;
 
 using UnityEngine;
 using UnityEngine.Rendering;
-using UnityEngine.Splines;
 
-[RequireComponent(typeof(SplineContainer))]
+using SplineMesh;
+using System.Collections;
+
+[RequireComponent(typeof(Spline))]
 public class Bandage : MonoBehaviour
 {
     [SerializeField]
@@ -20,9 +22,7 @@ public class Bandage : MonoBehaviour
     private float normalsAdditive;
 
     private List<BandagePoint> points = new();
-    private SplineContainer splineContainer;
-
-    private Spline spline => splineContainer.Spline;
+    private Spline spline;
 
     public float totalDistance 
     {
@@ -57,9 +57,7 @@ public class Bandage : MonoBehaviour
 
     private void Awake()
     {
-        splineContainer = GetComponent<SplineContainer>();
-
-        spline.Clear();
+        spline = GetComponent<Spline>();
     }
     private void LateUpdate()
     {
@@ -111,20 +109,20 @@ public class Bandage : MonoBehaviour
     {
         var list = AllPositions;
 
-        while(spline.Count > list.Count() + 2)   
+        while(spline.nodes.Count > list.Count() + 2)   
         {
-            spline.RemoveAt(0);
+            spline.nodes.RemoveAt(0);
         }
 
-        while(spline.Count < list.Count() + 2)   
+        while(spline.nodes.Count < list.Count() + 2)   
         {
-            spline.Insert(0, new());
+            spline.nodes.Insert(0, new(Vector3.zero, Vector3.forward));
         }
 
         SetPositionToKnot(0, transform.position);
-        SetPositionToKnot(spline.Count - 1, attachedPoint.transform.position);
+        SetPositionToKnot(spline.nodes.Count - 1, attachedPoint.transform.position);
 
-        for(int i = 1; i < spline.Count - 2; i++)
+        for(int i = 1; i < spline.nodes.Count - 2; i++)
         {
             SetPositionToKnot(i, list[i]);
         } 
@@ -132,9 +130,10 @@ public class Bandage : MonoBehaviour
 
     private void SetPositionToKnot(int index, Vector3 globalPosition)
     {
-        var knot = spline[index];
-        knot.Position = transform.InverseTransformPoint(globalPosition);
-        knot.Rotation = transform.rotation;
-        spline[index] = knot;
+        var node = spline.nodes[index];
+        node.Position = transform.InverseTransformPoint(globalPosition);
+        // knot.Direction = transform.rotation;
+        spline.nodes[index] = node;
     }
+
 }
