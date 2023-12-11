@@ -185,17 +185,17 @@ namespace QuestManagement{
         {
             Debug.Log($"Set quest to {Index}");
 
-            foreach(var condition in SelectedMission?.conditionsList)
-            {
-                condition.OnConditionChanged.RemoveListener(ConditionChangedEventHandler);
-            }
+            // foreach(var condition in SelectedMission?.conditionsList)
+            // {
+            //     condition.OnConditionChanged.RemoveListener(ConditionChangedEventHandler);
+            // }
 
             _CurrentMissionIndex = Index;
 
-            foreach(var condition in SelectedMission?.conditionsList)
-            {
-                condition.OnConditionChanged.AddListener(ConditionChangedEventHandler);
-            }
+            // foreach(var condition in SelectedMission?.conditionsList)
+            // {
+            //     condition.OnConditionChanged.AddListener(ConditionChangedEventHandler);
+            // }
 
             SelectedMission.CheckIncludes();
             SelectedMission.OnMissionStart.Invoke();
@@ -211,10 +211,10 @@ namespace QuestManagement{
             }
         }
 
-        private void ConditionChangedEventHandler(ToggleQuestCondition condition, bool value)
-        {
+        // private void ConditionChangedEventHandler(ToggleQuestCondition condition, bool value)
+        // {
 
-        }
+        // }
 
         private void SeletQuestAsSingleton()
         {

@@ -95,7 +95,7 @@ namespace QuestManagement{
             obj.condition = condition;
             obj.isConditionCompleted = condition.IsCompleted;
             
-            condition.OnConditionChanged.AddListener((sender, value) => obj.isConditionCompleted = value);
+            condition.OnConditionChanged.AddListener((value) => obj.isConditionCompleted = value);
         }
 
     }

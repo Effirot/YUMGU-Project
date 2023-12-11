@@ -20,13 +20,13 @@ namespace QuestManagement{
         
         public bool isVisible = true;
 
-        public ConditionCompleteEvent OnConditionChanged = new ConditionCompleteEvent(); 
+        public UnityEvent<bool> OnConditionChanged = new UnityEvent<bool>(); 
 
         public virtual bool IsCompleted { 
             get => _IsCompleted; 
             set {
                 _IsCompleted = value;
-                OnConditionChanged.Invoke(this, value);
+                OnConditionChanged.Invoke(value);
 
                 if(gameObject.activeInHierarchy)
                     mission.CheckConditions();
