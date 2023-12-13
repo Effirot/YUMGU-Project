@@ -2,7 +2,10 @@
 using System.Collections;
 using UnityEditor;
 
+#if UNITY_EDITOR
+
 namespace SplineMesh {
+
     [CustomEditor(typeof(SplineExtrusion))]
     public class SplineExtrusionEditor : Editor {
         private const int QUAD_SIZE = 10;
@@ -161,3 +164,4 @@ namespace SplineMesh {
         }
     }
 }
+#endif

@@ -63,20 +63,15 @@ public class Bandage : MonoBehaviour
     {
         RaysChackers();
         LastPointRayChecker();
-
-        RefreshGraphics();
     }
     private void OnDrawGizmos()
     {
         var list = AllPositions;
 
-        var lastPoint = list[0];
-
-        for(int i = 1; i < list.Length - 1; i++)
+        for(int i = 0; i < list.Length - 1; i++)
         {
-            Gizmos.DrawLine(lastPoint, list[i + 1]);
-            lastPoint = list[i];
-        }    
+            Gizmos.DrawLine(list[i], list[i + 1]);
+        }
     }
 
     private void LastPointRayChecker()
@@ -88,6 +83,12 @@ public class Bandage : MonoBehaviour
             {
                 Destroy(points[points.Count() - 1].gameObject);
                 points.RemoveAt(points.Count() - 1);
+
+                while(spline.nodes.Count > list.Count() - 1)
+                {
+                    spline.nodes.RemoveAt(spline.nodes.Count() - 1);
+                    spline.RefreshCurves(); 
+                }
             }
         }
     }
@@ -102,37 +103,28 @@ public class Bandage : MonoBehaviour
             pointObject.transform.position = hit.point + hit.normal * normalsAdditive;
 
             points.Add(pointObject.AddComponent<BandagePoint>());
+
+            var localPose = transform.InverseTransformPoint(pointObject.transform.position);
+            var node = new SplineNode(localPose, localPose + (localPose - spline.nodes.Last().Position)  / 3);
+            
+            node.Roll = 0;
+            node.Scale = Vector2.one;
+            node.Up = hit.normal;
+            spline.AddNode(node);
+            spline.RefreshCurves(); 
         }
-    }
-
-    private void RefreshGraphics()
-    {
-        var list = AllPositions;
-
-        while(spline.nodes.Count > list.Count() + 2)   
-        {
-            spline.nodes.RemoveAt(0);
-        }
-
-        while(spline.nodes.Count < list.Count() + 2)   
-        {
-            spline.nodes.Insert(0, new(Vector3.zero, Vector3.forward));
-        }
-
-        SetPositionToKnot(0, transform.position);
-        SetPositionToKnot(spline.nodes.Count - 1, attachedPoint.transform.position);
-
-        for(int i = 1; i < spline.nodes.Count - 2; i++)
-        {
-            SetPositionToKnot(i, list[i]);
-        } 
     }
 
     private void SetPositionToKnot(int index, Vector3 globalPosition)
     {
         var node = spline.nodes[index];
         node.Position = transform.InverseTransformPoint(globalPosition);
-        // knot.Direction = transform.rotation;
+
+        // if(index - 1 >= 0)
+        // {
+        //     node.Direction = (spline.nodes[index - 1].Position) * 0.1f;
+        // }
+
         spline.nodes[index] = node;
     }
 
